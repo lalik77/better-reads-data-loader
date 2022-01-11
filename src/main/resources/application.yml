@@ -1,10 +1,14 @@
+datadump.location:
+  author: src/main/resources/datadump/test-authors.txt
+  works: src/main/resources/datadump/test-works.txt
+
 spring:
   data:
     cassandra:
       keyspace-name: main
       username: ${USERNAME}
       password: ${PASSWORD}
-      schema-action: create_if_not_exists
+      schema-action: none
       request:
         timeout: 10s
       connection:
