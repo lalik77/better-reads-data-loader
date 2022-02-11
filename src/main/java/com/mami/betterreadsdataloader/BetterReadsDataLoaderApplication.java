@@ -62,7 +62,14 @@ public class BetterReadsDataLoaderApplication {
           Author author= new Author();
           author.setName(jsonObject.optString("name"));
           author.setPersonalName(jsonObject.optString("personal_name"));
-          author.setId(jsonObject.optString("key").replace("/authors/",""));
+
+          final String result1 = jsonObject.optString("key").replace("/a/", "");
+          if(!result1.startsWith("/authors/")) {
+          author.setId(result1);
+          } else {
+            final String result2 = jsonObject.optString("key").replace("/authors/", "");
+            author.setId(result2);
+          }
 
           //Persist using Repository
           System.out.println("[INITAUTHOR] ====> saving author : " + author.getName() + " ." );
@@ -135,7 +142,7 @@ public class BetterReadsDataLoaderApplication {
                 .map(id -> authorRepository.findById(id))
                 .map(optionalAuthor -> {
                   if (!optionalAuthor.isPresent()) {
-                    return "Uknown Author";
+                    return "Unknown Author";
                   }
                   return optionalAuthor.get().getName();
                 })
@@ -165,8 +172,8 @@ public class BetterReadsDataLoaderApplication {
     System.out.println(
         "[Start]==============================> Application Started! < ==============================");
 
-   // initAuthor();
-    initWorks();
+    initAuthor();
+   //initWorks();
 
   }
 

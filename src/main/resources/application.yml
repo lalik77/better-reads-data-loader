@@ -1,6 +1,6 @@
 datadump.location:
-  author: src/main/resources/datadump/test-authors.txt
-  works: src/main/resources/datadump/test-works.txt
+  author: /Users/alexandermami/Desktop/javabrains/betterreads-data-loader/Data_Dump/temp_test-authors.txt
+  works: /Users/alexandermami/Desktop/javabrains/betterreads-data-loader/Data_Dump/test-works.txt
 
 spring:
   data:
