@@ -130,9 +130,27 @@ public class BetterReadsDataLoaderApplication {
             List<String> authorIds = new ArrayList<>();
 
             for (int i = 0; i < authorsJSONArr.length(); i++) {
-              String authorId = authorsJSONArr.getJSONObject(i)
+
+              /*String authorId = authorsJSONArr.getJSONObject(i)
                   .getJSONObject("author")
-                  .getString("key").replace("/authors/", "");
+                  .getString("key").replace("/a/", "");*/
+              String authorId=null;
+
+              String result1 = authorsJSONArr.getJSONObject(i)
+                  .getJSONObject("author")
+                  .getString("key").replace("/a/", "");
+
+              if(!result1.startsWith("/authors/")) {
+
+                authorId = result1;
+
+              } else {
+                authorId = authorsJSONArr.getJSONObject(i)
+                    .getJSONObject("author")
+                    .getString("key").replace("/authors/", "");
+              }
+
+
 
               authorIds.add(authorId);
             }
@@ -151,7 +169,7 @@ public class BetterReadsDataLoaderApplication {
             book.setAuthorNames(authorNames);
 
             //Persist using Repository
-            System.out.println("[INIWORKS] ====> saving book : " + book.getName() + " ." );
+            System.out.println("[INITWORKS] ====> saving book : " + book.getName() + " ." );
             bookRepository.save(book);
           }
 
@@ -172,8 +190,8 @@ public class BetterReadsDataLoaderApplication {
     System.out.println(
         "[Start]==============================> Application Started! < ==============================");
 
-    initAuthor();
-   //initWorks();
+   initAuthor();
+   initWorks();
 
   }
 
